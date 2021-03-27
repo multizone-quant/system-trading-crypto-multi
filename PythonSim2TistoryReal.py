@@ -2,7 +2,8 @@
 #
 # 보다 자세한 내용을 아래 tistory 참고
 # https://money-expert.tistory.com/41 : upbit websocket을 이용한 실제 매매 예제
-# https://money-expert.tistory.com/42 : upbit 시세 주기적으로 받아서 매매 예제
+# https://money-expert.tistory.com/42 : upbit 시세 주기적으로 받아서 매매 예제 (ticker 하나)
+# https://money-expert.tistory.com/55 : upbit 시세 주기적으로 받아서 매매 예제 (복수 ticker)
 
 import json
 import csv
@@ -90,8 +91,8 @@ if __name__ == '__main__':
     # trading용 parameter 설정
     # 모든 ticker에 대하여 같은 설정 사용. 만약 ticker별로 별도 설정 값이 필요한 경우에는 ticker별로 설정 필요
     buy_perc = 0.03  # 시작가 대비 3% 오르면 매수
-    sell_perc = 0.01 # 매수가 대비 1% 오르면 매도(익절)
-    losscut = 0.01   # 매수가 대비 1% 내리면 losscut 매도(손절)
+    sell_perc = 0.05 # 매수가 대비 5% 오르면 매도(익절)
+    losscut = 0.03   # 매수가 대비 3% 내리면 losscut 매도(손절)
     seed_for_each_ticker = 10000
 
     tr_param = tr_params(buy_perc, sell_perc, losscut, seed_for_each_ticker)
