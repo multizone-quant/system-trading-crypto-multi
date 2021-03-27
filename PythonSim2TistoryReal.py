@@ -22,42 +22,6 @@ import json
 
 UPBIT_WEB_SOCKET_ADD = 'wss://api.upbit.com/websocket/v1'
 
-# websocket으로 받은 시세를 처리하는 구조로 변환
-def make_info_from_upbit_real(data) :
-    info = {}
-    info['ticker'] = data['code']
-    info['date'] = data['trade_date']
-    info['time'] = data['trade_time']
-    info['ask_bid'] = 'sell'
-    if data['ask_bid'] == 'BID' :
-        info['ask_bid'] = 'buy'
-    info['open'] = data['trade_price']
-    info['high'] = data['trade_price']
-    info['low'] = data['trade_price']
-    info['close'] = data['trade_price']
-    info['qty'] = data['trade_volume']
-    return info
-
-# upbit api로 받은 시세를 처리하는 구조로 변환
-def make_info_from_upbit_tickers(data) :
-    info = {}
-    info['ticker'] = data['market']
-    info['date'] = data['trade_date_kst']
-    info['time'] = data['trade_time_kst']
-    info['ask_bid'] = ''
-    info['open'] = float(data['opening_price'])  # 일봉 기준 시작가
-    info['high'] = float(data['high_price'])
-    info['low'] = float(data['low_price'])
-    info['close'] = float(data['trade_price'])     # 최근 가격
-    info['vol'] = float(data['trade_volume'])
-
-    # change로 +/- 구분 change_rate : %
-    info['change_rate'] = float(data['change_rate'])
-    info['change'] = data['change'] # FALL or RISE
-    info['acc_trade_qty_24h'] = float(data['acc_trade_volume_24h'])
-
-    return info
-
 recv_cnt = 0
 async def my_connect(real, ticker, show) :
     global recv_cnt
