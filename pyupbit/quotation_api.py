@@ -181,6 +181,8 @@ def get_current_ticker_info(ticker="KRW-BTC"):
                     ret[market] = make_info_from_tickers(content)
                 return [ret]
             else:
+                if 'error' in contents[0] :  # add err msg when ticker is not exist
+                    return contents
                 return contents[0]['trade_price']
         else:
             return [{'error':{'message':'unknown error'}}]
