@@ -1,3 +1,5 @@
+
+
 # 거래소 마다 API를 통하여 받을 수 있는 값이 틀리기 때문에 통일된 형태로 정의함
 # class Exchange를 base로 거래소마다 서로 다른 형태의 값을 같은 형태로 전환하는 wrapper class임
 #
@@ -266,8 +268,8 @@ if __name__ == "__main__":
 
         print('-- get pending_orders --')
         orders = upbit.pending_orders('KRW-BTC')  # or 'ALL'
-        if 'error' in orders :
-            print(orders['error']['message']) 
+        if 'error' in orders[0] :
+            print(orders[0]['error']['message']) 
         else :
             print (orders[0])
             for ord in orders[0] :
