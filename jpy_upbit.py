@@ -25,7 +25,7 @@ from pyupbit.exchange_api import *
 
 from jpy_basic_ex import *
 
-UPBIT_TRADING_FEE = 0.035
+UPBIT_TRADING_FEE = 0.05
 
 class MyUpbit(Exchange):
     def __init__(self, access, secret):
@@ -267,7 +267,7 @@ if __name__ == "__main__":
         print('-- get pending_orders --')
         orders = upbit.pending_orders('KRW-BTC')  # or 'ALL'
         if 'error' in orders :
-            print(bal['error']['message']) 
+            print(orders['error']['message']) 
         else :
             print (orders[0])
             for ord in orders[0] :
